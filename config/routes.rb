@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/signup', to: 'auth#create'
       post '/login', to: 'auth#login'
+      get '/auto_login', to: 'auth#auto_login'
     end
   end
 end
