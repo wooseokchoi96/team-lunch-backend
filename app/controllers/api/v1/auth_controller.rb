@@ -7,7 +7,8 @@ class Api::V1::AuthController < ApplicationController
             password: params[:password]
         )
         if user.save
-            render json: user
+            token = JWT.encode({user_id: user.id}, secret_key)
+            render json: {user: user, token: token}
         else 
             render json: {errors: user.errors.full_messages}
         end
@@ -16,7 +17,8 @@ class Api::V1::AuthController < ApplicationController
     def login
         user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
-            render json: user
+            token = JWT.encode({user_id: user.id}, secret_key)
+            render json: {user: user, token: token}
         else
             render json: {errors: 'Login Failed'}
         end
