@@ -4,6 +4,9 @@ Rails.application.routes.draw do
       post '/signup', to: 'auth#create'
       post '/login', to: 'auth#login'
       get '/auto_login', to: 'auth#auto_login'
+      resources :conversations, only: [:index, :create]
+      resources :messages, only: [:create]
+      mount ActionCable.server => '/cable'
     end
   end
 end
