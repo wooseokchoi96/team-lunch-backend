@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Conversation.delete_all
+Message.delete_all
 
 u1 = User.all[0]
 u2 = User.all[1]
